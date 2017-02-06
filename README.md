@@ -16,5 +16,5 @@ Web project based on https://github.com/codrops/RainEffect.
 Project ready!
 
 <h4>
-There is an example with a project already configured inside <i>application_demo/</i> folder
+There is an example with a project already configured inside <i>demo_application/</i> folder
 </h4>
