@@ -13,6 +13,8 @@ Web project based on https://github.com/codrops/RainEffect.
   </li>
   <li>Add the generated file (<i>index.min.js</i>) into your html file.</li>
 </ol>
+Project ready!
 
-There is an example inside <i>application_demo/</i>
-
+<h4>
+There is an example with a project already configured inside <i>application_demo/</i> folder
+</h4>
