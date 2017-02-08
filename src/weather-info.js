@@ -71,7 +71,7 @@ WeatherInfo.prototype = {
 	weatherInfoToJsonData(weatherItem) {
 		let weatherJson = {
 	        weather: weatherItem.weather[0].main,
-	        temperature: weatherItem.main.temp,
+	        temp: weatherItem.main.temp,
 	        min: weatherItem.main.temp_min,
 	        max: weatherItem.main.temp_max,
 	        humidity: weatherItem.main.humidity,
@@ -80,6 +80,9 @@ WeatherInfo.prototype = {
 	        dt: weatherItem.dt
 		}
 		return weatherJson;
+	},
+	getJsonData() {
+		return this.jsonData;
 	}
 }
 

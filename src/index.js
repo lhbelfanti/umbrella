@@ -35,6 +35,7 @@ let raindrops,
 
 let parallax={x:0,y:0};
 
+let weatherInfo=null;
 let weatherData=null;
 let curWeatherData=null;
 let blend={v:0};
@@ -91,7 +92,7 @@ function init(){
   canvas.style.width=window.innerWidth+"px";
   canvas.style.height=window.innerHeight+"px";
 
-  let weatherInfo = new WeatherInfo("BuenosAires", "metric");
+  weatherInfo = new WeatherInfo("BuenosAires", "metric");
 
   raindrops=new Raindrops(
     canvas.width,
@@ -246,6 +247,9 @@ function updateWeather(){
     currentSlide = document.querySelector(".slide");
     hash="#"+currentSlide.getAttribute("id");
   }
+
+  loadWeatherInfo(hash);
+
   currentNav=document.querySelector("[href='"+hash+"']");
   let data=weatherData[currentSlide.getAttribute('data-weather')];
   curWeatherData=data;
@@ -312,4 +316,18 @@ function generateTextures(fg,bg,alpha=1){
 
   textureBgCtx.globalAlpha=alpha;
   textureBgCtx.drawImage(bg,0,0,textureBgSize.width,textureBgSize.height);
+}
+
+function loadWeatherInfo(hash) {
+  if(weatherInfo.getJsonData().today.temp === undefined) {
+    window.setTimeout(function(){
+      loadWeatherInfo(hash);
+    }, 2000);
+  }
+  else {
+    let currentSlide = currentSlide = document.querySelector(hash);
+    let temp = currentSlide.querySelector(hash + "-temp");
+    console.log(currentSlide);
+    temp.innerHTML = Math.round(weatherInfo.getJsonData().today.temp) + "°<small>C</small>";
+  }
 }
