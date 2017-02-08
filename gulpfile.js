@@ -17,8 +17,7 @@ function compileJS(file){
     .pipe(streamify(uglify()))
     .pipe(gulp.dest('application/js'));
 }
-gulp.task('js',['js1'],function(){});
-gulp.task('js1',function(){
+gulp.task('js', function(){
   compileJS('index');
 });
 

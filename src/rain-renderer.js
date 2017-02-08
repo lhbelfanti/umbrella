@@ -65,7 +65,7 @@ RainRenderer.prototype={
     gl.createUniform("1f","parallaxFg",this.options.parallaxFg);
 
 
-    gl.createTexture(null,0);
+    gl.createTexture(this.imageBg,0);
 
     this.textures=[
       {name:'textureShine', img:this.imageShine==null?createCanvas(2,2):this.imageShine},

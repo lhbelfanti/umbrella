@@ -6,6 +6,7 @@ import createCanvas from "./create-canvas";
 import TweenLite from 'gsap';
 import times from './times';
 import {random,chance} from './random';
+import WeatherInfo from "./weather-info";
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
@@ -89,6 +90,8 @@ function init(){
   canvas.height=window.innerHeight*dpi;
   canvas.style.width=window.innerWidth+"px";
   canvas.style.height=window.innerHeight+"px";
+
+  let weatherInfo = new WeatherInfo("BuenosAires", "metric");
 
   raindrops=new Raindrops(
     canvas.width,
