@@ -235,7 +235,10 @@ function setupWeatherData(){
       bg:textureSunBg
     }),
   };
+
+  loadMinDateInfo();
 }
+
 function updateWeather(){
   let hash=window.location.hash;
   let currentSlide=null;
@@ -325,9 +328,58 @@ function loadWeatherInfo(hash) {
     }, 2000);
   }
   else {
-    let currentSlide = currentSlide = document.querySelector(hash);
+    let currentSlide = document.querySelector(hash);
+    let currentNav = document.querySelector("[href='"+hash+"']");
     let temp = currentSlide.querySelector(hash + "-temp");
-    console.log(currentSlide);
-    temp.innerHTML = Math.round(weatherInfo.getJsonData().today.temp) + "°<small>C</small>";
+    let date = currentSlide.querySelector(hash + "-date");
+    let minDate = currentNav.querySelector(hash + "-min-date");
+    let tempInfo, dateInfo, minDateInfo;
+    //Today
+    if(hash == "#slide-1") {
+      tempInfo = weatherInfo.getJsonData().today.temp;
+      dateInfo = weatherInfo.getJsonData().today.date;
+      minDateInfo = weatherInfo.getJsonData().today.minDate;
+    }
+    else {
+      let dayIndex = (hash.charAt(hash.length-1)) - 1;
+      tempInfo = weatherInfo.getJsonData().minWeekData[dayIndex].temp;
+      dateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].date;
+      minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
+    }
+
+    temp.innerHTML = Math.round(tempInfo) + "°<small>C</small>";
+    date.innerHTML = dateInfo;
+    minDate.innerHTML = minDateInfo;
+  }
+}
+
+function loadMinDateInfo() {
+    if(weatherInfo.getJsonData().today.temp === undefined) {
+    window.setTimeout(function(){
+      loadMinDateInfo();
+    }, 2000);
+  }
+  else {
+    let hash = "#slide-";
+    let currentHash, currentSlide, currentNav, minDateSpan, minDateInfo, dayIndex, dataIcon, iconInfo;
+    for (let i = 0; i < 5; i++) {
+      currentHash = hash + (i + 1);
+      currentNav = document.querySelector("[href='" + currentHash + "']");
+      minDateSpan = currentNav.querySelector(currentHash + "-min-date");
+      dataIcon = currentNav.querySelector(".icon");
+      //Today
+      if(currentHash == "#slide-1") {
+        minDateInfo = weatherInfo.getJsonData().today.minDate;
+        iconInfo = weatherInfo.getJsonData().today.icon;
+      }
+      else {
+        dayIndex = (currentHash.charAt(currentHash.length-1)) - 1;
+        minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
+        iconInfo = weatherInfo.getJsonData().minWeekData[dayIndex].icon;
+      }
+
+      minDateSpan.innerHTML = minDateInfo;
+      dataIcon.setAttribute("data-icon", iconInfo);
+    }
   }
 }

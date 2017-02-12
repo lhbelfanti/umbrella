@@ -1,8 +1,21 @@
+import {dayIndexToString, monthIndexToString} from "./date-localization";
+import getIcon from "./weather-icon";
+
 const defaultJson = {
 	country:"",
 	city:"",
 	today:{},
-	week:[]
+	week:[],
+	minWeekData:[]
+}
+
+const minifiedWeek = {
+	min:100,
+	max:0,
+	temp:0,
+	date:"",
+	minDate:"",
+	icon:""
 }
 
 function WeatherInfo(city, units) {
@@ -33,8 +46,8 @@ WeatherInfo.prototype = {
 	    	});
 	},
 	proccessTodayForecastResult(weatherData) {
-		this.jsonData.country = Object.assign(this.jsonData.country, weatherData.sys.country);
-    	this.jsonData.city = Object.assign(this.jsonData.city, weatherData.name);
+		this.jsonData.country = weatherData.sys.country;
+    this.jsonData.city = weatherData.name;
 		this.jsonData.today = Object.assign(this.jsonData.today, this.weatherInfoToJsonData(weatherData));
 	},
 	proccessFiveDaysForecastResult(weatherData) {	
@@ -44,6 +57,7 @@ WeatherInfo.prototype = {
 		    	forecast.push(this.weatherInfoToJsonData(weatherData.list[i]));
 		    }
 		    this.divideForecastByDay(forecast);
+		    this.minifyWeekForecast();
 		}
 	},
 	divideForecastByDay(forecast) {
@@ -69,6 +83,7 @@ WeatherInfo.prototype = {
 		}
 	},
 	weatherInfoToJsonData(weatherItem) {
+		let dateObject = this.setDateInformation(weatherItem.dt);
 		let weatherJson = {
 	        weather: weatherItem.weather[0].main,
 	        temp: weatherItem.main.temp,
@@ -77,12 +92,64 @@ WeatherInfo.prototype = {
 	        humidity: weatherItem.main.humidity,
 	        pressure: weatherItem.main.pressure,
 	        windSpeed: weatherItem.wind.speed,
-	        dt: weatherItem.dt
+	        dt: weatherItem.dt,
+	        date: dateObject.date,
+	        minDate: dateObject.minDate,
+	        icon: getIcon(weatherItem.weather[0].id)
 		}
 		return weatherJson;
 	},
 	getJsonData() {
 		return this.jsonData;
+	},
+	minifyWeekForecast() {
+		let weekArray = this.jsonData.week;
+		let day, data, threeHoursData, dayTemp = 0, dateObject, iconName = 0;
+
+		for(let j = 0; j < weekArray.length; j++) {
+			day = weekArray[j];
+			data = Object.assign({}, minifiedWeek);
+
+
+			for (let i = 0; i < day.length; i++) {
+				threeHoursData = day[i];
+
+				if(threeHoursData.min < data.min) {
+					data.min = Math.round(threeHoursData.min); //Save data.min
+				}
+				if(threeHoursData.max > data.max) {
+					data.max = Math.round(threeHoursData.max); //Save data.max
+				}
+				if(i == 4) { //Midday
+					iconName = threeHoursData.icon;
+				}
+
+				dayTemp += Math.round((threeHoursData.min + threeHoursData.max) / 2);
+			}
+			
+			data.temp = Math.round((dayTemp / day.length)); //Save data.temp
+			data.date = threeHoursData.date; //Save data.date
+			data.minDate = threeHoursData.minDate; //Save data.minDate
+			data.icon = iconName; //Save data.icon
+
+			this.jsonData.minWeekData.push(data);
+			dayTemp = 0;
+		}
+	},
+	setDateInformation(milliseconds) {
+		let dateObjectDefault = {date: "", minDate: ""};
+		let dateObject = Object.assign({}, dateObjectDefault);
+		let dateObj = new Date(milliseconds * 1000);
+		let dayNumber = dateObj.getDate();
+		let monthNumber = dateObj.getMonth();
+
+		let dateString = dayIndexToString(dateObj.getDay()) + ", " + dayNumber + " de " + 
+							monthIndexToString(monthNumber) + " de " + dateObj.getFullYear();
+		dateObject.date = dateString;
+		let addZeroToDay = dayNumber < 10;
+		let addZeroToMonth = (monthNumber + 1) < 10;
+		dateObject.minDate = (addZeroToDay ? "0" : "") + dateObj.getDate() + "/" + (addZeroToMonth ? "0" : "") + (monthNumber + 1);
+		return dateObject;
 	}
 }
 
