@@ -68,3 +68,19 @@ export function monthIndexToString(monthIndex) {
   }
   return monthString;
 }
+
+export function processDateInformation(milliseconds) {
+	let dateObjectDefault = {date: "", minDate: ""};
+	let dateObject = Object.assign({}, dateObjectDefault);
+	let dateObj = new Date(milliseconds * 1000);
+	let dayNumber = dateObj.getDate();
+	let monthNumber = dateObj.getMonth();
+
+	let dateString = dayIndexToString(dateObj.getDay()) + ", " + dayNumber + " de " + 
+						monthIndexToString(monthNumber) + " de " + dateObj.getFullYear();
+	dateObject.date = dateString;
+	let addZeroToDay = dayNumber < 10;
+	let addZeroToMonth = (monthNumber + 1) < 10;
+	dateObject.minDate = (addZeroToDay ? "0" : "") + dateObj.getDate() + "/" + (addZeroToMonth ? "0" : "") + (monthNumber + 1);
+	return dateObject;
+}

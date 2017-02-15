@@ -13,6 +13,7 @@ let textureRainFg, textureRainBg,
   textureFalloutFg, textureFalloutBg,
   textureSunFg, textureSunBg,
   textureDrizzleFg, textureDrizzleBg,
+  textureCloudsFg, textureCloudsBg,
   dropColor, dropAlpha;
 
 let textureFg,
@@ -50,21 +51,24 @@ function loadTextures(){
 
     {name:"textureStormLightningFg",src:"img/weather/texture-storm-lightning-fg.png"},
     {name:"textureStormLightningBg",src:"img/weather/texture-storm-lightning-bg.png"},
-
+/*
     {name:"textureFalloutFg",src:"img/weather/texture-fallout-fg.png"},
     {name:"textureFalloutBg",src:"img/weather/texture-fallout-bg.png"},
-
+*/
     {name:"textureSunFg",src:"img/weather/texture-sun-fg.png"},
     {name:"textureSunBg",src:"img/weather/texture-sun-bg.png"},
 
     {name:"textureDrizzleFg",src:"img/weather/texture-drizzle-fg.png"},
     {name:"textureDrizzleBg",src:"img/weather/texture-drizzle-bg.png"},
+
+    {name:"textureCloudsFg",src:"img/weather/texture-clouds-fg.png"},
+    {name:"textureCloudsBg",src:"img/weather/texture-clouds-bg.png"},
   ]).then((images)=>{
     textureRainFg = images.textureRainFg.img;
     textureRainBg = images.textureRainBg.img;
 
-    textureFalloutFg = images.textureFalloutFg.img;
-    textureFalloutBg = images.textureFalloutBg.img;
+    /*textureFalloutFg = images.textureFalloutFg.img;
+    textureFalloutBg = images.textureFalloutBg.img;*/
 
     textureStormLightningFg = images.textureStormLightningFg.img;
     textureStormLightningBg = images.textureStormLightningBg.img;
@@ -74,6 +78,9 @@ function loadTextures(){
 
     textureDrizzleFg = images.textureDrizzleFg.img;
     textureDrizzleBg = images.textureDrizzleBg.img;
+
+    textureCloudsFg = images.textureCloudsFg.img;
+    textureCloudsBg = images.textureCloudsBg.img;
 
     dropColor = images.dropColor.img;
     dropAlpha = images.dropAlpha.img;
@@ -189,11 +196,10 @@ function setupWeatherData(){
       rainChance:0.35,
       dropletsRate:50,
       raining:true,
-      // trailRate:2.5,
       fg:textureRainFg,
       bg:textureRainBg
     }),
-    storm:weather({
+    thunderstorm:weather({
       maxR:55,
       rainChance:0.4,
       dropletsRate:80,
@@ -206,7 +212,7 @@ function setupWeatherData(){
       flashBg:textureStormLightningBg,
       flashChance:0.1
     }),
-    fallout:weather({
+    /*fallout:weather({
       minR:30,
       maxR:60,
       rainChance:0.35,
@@ -215,7 +221,7 @@ function setupWeatherData(){
       fg:textureFalloutFg,
       bg:textureFalloutBg,
       collisionRadiusIncrease:0
-    }),
+    }),*/
     drizzle:weather({
       minR:10,
       maxR:40,
@@ -226,7 +232,15 @@ function setupWeatherData(){
       fg:textureDrizzleFg,
       bg:textureDrizzleBg
     }),
-    sunny:weather({
+    clouds:weather({
+      rainChance:0,
+      rainLimit:0,
+      droplets:0,
+      raining:false,
+      fg:textureCloudsFg,
+      bg:textureCloudsBg
+    }),
+    clear:weather({
       rainChance:0,
       rainLimit:0,
       droplets:0,
@@ -333,23 +347,26 @@ function loadWeatherInfo(hash) {
     let temp = currentSlide.querySelector(hash + "-temp");
     let date = currentSlide.querySelector(hash + "-date");
     let minDate = currentNav.querySelector(hash + "-min-date");
-    let tempInfo, dateInfo, minDateInfo;
+    let tempInfo, dateInfo, minDateInfo, dataWeatherInfo;
     //Today
     if(hash == "#slide-1") {
       tempInfo = weatherInfo.getJsonData().today.temp;
       dateInfo = weatherInfo.getJsonData().today.date;
       minDateInfo = weatherInfo.getJsonData().today.minDate;
+      dataWeatherInfo = weatherInfo.getJsonData().today.type;
     }
     else {
       let dayIndex = (hash.charAt(hash.length-1)) - 1;
       tempInfo = weatherInfo.getJsonData().minWeekData[dayIndex].temp;
       dateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].date;
       minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
+      dataWeatherInfo = weatherInfo.getJsonData().minWeekData[dayIndex].type;
     }
 
     temp.innerHTML = Math.round(tempInfo) + "°<small>C</small>";
     date.innerHTML = dateInfo;
     minDate.innerHTML = minDateInfo;
+    currentSlide.setAttribute("data-weather", dataWeatherInfo);
   }
 }
 
