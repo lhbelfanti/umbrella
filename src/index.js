@@ -356,7 +356,7 @@ function loadWeatherInfo(hash) {
       dataWeatherInfo = weatherInfo.getJsonData().today.type;
     }
     else {
-      let dayIndex = (hash.charAt(hash.length-1)) - 1;
+      let dayIndex = (hash.charAt(hash.length-1)) - 2;
       tempInfo = weatherInfo.getJsonData().minWeekData[dayIndex].temp;
       dateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].date;
       minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
@@ -390,7 +390,9 @@ function loadMinDateInfo() {
         iconInfo = weatherInfo.getJsonData().today.icon;
       }
       else {
-        dayIndex = (currentHash.charAt(currentHash.length-1)) - 1;
+        dayIndex = (currentHash.charAt(currentHash.length-1)) - 2;
+        console.log("Day: " + dayIndex);
+        console.log(weatherInfo.getJsonData().minWeekData);
         minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
         iconInfo = weatherInfo.getJsonData().minWeekData[dayIndex].icon;
       }
