@@ -10,6 +10,7 @@ function WeatherInfo(city, units) {
 	this.city = city;
 	this.units = units; //metric: Celsius, imperial: Fahrenheit
 	this.jsonData = Object.assign({}, defaultJson);
+	this.loaded = false;
 	this.init();
 }
 
@@ -35,8 +36,9 @@ WeatherInfo.prototype = {
 		this.jsonData.country = weatherData.sys.country;
    		this.jsonData.city = weatherData.name;
 		this.jsonData.today = Object.assign(this.jsonData.today, this.weatherInfoToJsonData(weatherData));
+		this.loaded = true;
 	},
-	proccessFiveDaysForecastResult(weatherData) {	
+	proccessFiveDaysForecastResult(weatherData) {
 		let forecast = [];
 		if (weatherData.list.length > 0) {
 			for (let i = 0; i < weatherData.list.length; i++) {
@@ -107,8 +109,6 @@ WeatherInfo.prototype = {
 				}
 				if(threeHoursData.max > data.max) {
 					data.max = Math.round(threeHoursData.max); //Save data.max
-				}
-				if(i == 4) { //Midday
 					iconName = threeHoursData.icon;
 					type = threeHoursData.type;
 				}
@@ -125,6 +125,9 @@ WeatherInfo.prototype = {
 			this.jsonData.minWeekData.push(data);
 			dayTemp = 0;
 		}
+	},
+	weatherInfoLoaded() {
+		return this.loaded;
 	}
 }
 

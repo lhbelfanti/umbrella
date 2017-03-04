@@ -10,7 +10,7 @@ import WeatherInfo from "./weather-info";
 
 let textureRainFg, textureRainBg,
   textureStormLightningFg, textureStormLightningBg,
-  textureFalloutFg, textureFalloutBg,
+  /*textureFalloutFg, textureFalloutBg,*/
   textureSunFg, textureSunBg,
   textureDrizzleFg, textureDrizzleBg,
   textureCloudsFg, textureCloudsBg,
@@ -257,6 +257,7 @@ function updateWeather(){
   let hash=window.location.hash;
   let currentSlide=null;
   let currentNav=null;
+  let shouldReload = false;
   if(hash!=""){
     currentSlide = document.querySelector(hash);
   }
@@ -266,10 +267,14 @@ function updateWeather(){
   }
 
   loadWeatherInfo(hash);
-
+  
   currentNav=document.querySelector("[href='"+hash+"']");
   let data=weatherData[currentSlide.getAttribute('data-weather')];
   curWeatherData=data;
+
+  if(!weatherInfo.weatherInfoLoaded()) {
+    shouldReload = true;
+  }
 
   raindrops.options=Object.assign(raindrops.options,data)
 
@@ -293,6 +298,12 @@ function updateWeather(){
 
   currentSlide.classList.add("slide--current");
   currentNav.classList.add("nav-item--current");
+
+  if(shouldReload){
+    window.setTimeout(function(){
+      updateWeather();
+    }, 2000);
+  }
 }
 
 function flash(baseBg,baseFg,flashBg,flashFg){
@@ -356,7 +367,7 @@ function loadWeatherInfo(hash) {
       dataWeatherInfo = weatherInfo.getJsonData().today.type;
     }
     else {
-      let dayIndex = (hash.charAt(hash.length-1)) - 2;
+      let dayIndex = (hash.charAt(hash.length-1)) - 1;
       tempInfo = weatherInfo.getJsonData().minWeekData[dayIndex].temp;
       dateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].date;
       minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
@@ -390,13 +401,14 @@ function loadMinDateInfo() {
         iconInfo = weatherInfo.getJsonData().today.icon;
       }
       else {
-        dayIndex = (currentHash.charAt(currentHash.length-1)) - 2;
-        console.log("Day: " + dayIndex);
-        console.log(weatherInfo.getJsonData().minWeekData);
+        dayIndex = (currentHash.charAt(currentHash.length-1)) - 1;
+        //Sometimes the api return 5 days instead of 6
+        if(weatherInfo.getJsonData().minWeekData.length == 5) {
+          dayIndex++;
+        }
         minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
         iconInfo = weatherInfo.getJsonData().minWeekData[dayIndex].icon;
       }
-
       minDateSpan.innerHTML = minDateInfo;
       dataIcon.setAttribute("data-icon", iconInfo);
     }
