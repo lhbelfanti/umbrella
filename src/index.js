@@ -368,6 +368,10 @@ function loadWeatherInfo(hash) {
     }
     else {
       let dayIndex = (hash.charAt(hash.length-1)) - 1;
+      //Sometimes the api return 5 days instead of 6
+      if(weatherInfo.getJsonData().minWeekData.length == 5) {
+        dayIndex--;
+      }
       tempInfo = weatherInfo.getJsonData().minWeekData[dayIndex].temp;
       dateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].date;
       minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
@@ -404,7 +408,7 @@ function loadMinDateInfo() {
         dayIndex = (currentHash.charAt(currentHash.length-1)) - 1;
         //Sometimes the api return 5 days instead of 6
         if(weatherInfo.getJsonData().minWeekData.length == 5) {
-          dayIndex++;
+          dayIndex--;
         }
         minDateInfo = weatherInfo.getJsonData().minWeekData[dayIndex].minDate;
         iconInfo = weatherInfo.getJsonData().minWeekData[dayIndex].icon;
