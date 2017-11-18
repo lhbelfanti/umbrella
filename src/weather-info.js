@@ -4,10 +4,10 @@ import weatherDataById from "./weather-data";
 const defaultJson = { country:"", city:"", today:{}, week:[], minWeekData:[] }
 const minifiedWeek = { min:100, max:0, temp:0, date:"", minDate:"", icon:"", type:"" }
 
-function WeatherInfo(city, units) {
+function WeatherInfo(cityId, units) {
 	this.apiUrl = "http://api.openweathermap.org/data/2.5/";
 	this.appId = "fe7d49304405d3ad0ccae68b822ca831";
-	this.city = city;
+	this.id = cityId;
 	this.units = units; //metric: Celsius, imperial: Fahrenheit
 	this.jsonData = Object.assign({}, defaultJson);
 	this.loaded = false;
@@ -20,7 +20,7 @@ WeatherInfo.prototype = {
 		this.getWeatherForecast("forecast", this.proccessFiveDaysForecastResult.bind(this)); //Load five days forecast
 	},
 	getWeatherForecast(type, callback) {
-	    let requestString = this.apiUrl + type + "?q=" + this.city + "&units=" + this.units + "&appid=" + this.appId;
+	    let requestString = this.apiUrl + type + "?id=" + this.id + "&units=" + this.units + "&appid=" + this.appId;
 	    fetch(requestString)
 	    	.then(function(response) {  
 	  			if (response.status !== 200) {  

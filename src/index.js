@@ -99,7 +99,7 @@ function init(){
   canvas.style.width=window.innerWidth+"px";
   canvas.style.height=window.innerHeight+"px";
 
-  weatherInfo = new WeatherInfo("BuenosAires", "metric");
+  weatherInfo = new WeatherInfo("3433955", "metric");
 
   raindrops=new Raindrops(
     canvas.width,
