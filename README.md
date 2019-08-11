@@ -25,3 +25,6 @@ Project running!
 <h3>
 There is an example with a project already configured inside <i>demo_application/</i> folder
 </h3>
+
+<h2>Screenshots:</h2>
+![Weather](images/screenshot.png)
