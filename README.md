@@ -27,4 +27,4 @@ There is an example with a project already configured inside <i>demo_application
 </h3>
 
 <h2>Screenshots:</h2>
-![Weather](https://raw.github.com/lhbelfanti/weather-forecast-wallpaper/blob/master/images/screenshot.jpg)
+![Weather](https://user-images.githubusercontent.com/8301048/62829540-5382fe80-bbd6-11e9-85a6-38e5ca328892.jpg)
