@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Weather Forecast</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/forecast.css" />
+	<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+</head>
+
+<body class="forecast-body">
+	<div class="image-preload">
+		<img src="img/drop-color.png" alt="">
+		<img src="img/drop-alpha.png" alt="">
+		<img src="img/weather/texture-rain-fg.png" alt=""/>
+		<img src="img/weather/texture-rain-bg.png" alt=""/>
+		<img src="img/weather/texture-sun-fg.png" alt=""/>
+		<img src="img/weather/texture-sun-bg.png" alt=""/>
+		<img src="img/weather/texture-fallout-fg.png" alt=""/>
+		<img src="img/weather/texture-fallout-bg.png" alt=""/>
+		<img src="img/weather/texture-drizzle-fg.png" alt=""/>
+		<img src="img/weather/texture-drizzle-bg.png" alt=""/>
+		<img src="img/weather/texture-clouds-fg.png" alt=""/>
+		<img src="img/weather/texture-clouds-bg.png" alt=""/>
+	</div>
+	<div class="container">
+		<header>
+		</header>
+		<div class="slideshow">
+			<canvas width="1" height="1" id="container" style="position:absolute"></canvas>
+			<div class="slide" id="slide-1" data-weather="clear">
+				<div class="slide__element slide__element--date" id="slide-1-date">N/A</div>
+				<div class="slide__element slide__element--temp" id="slide-1-temp">N/A</div>
+			</div>
+			<div class="slide" id="slide-2" data-weather="clear">
+				<div class="slide__element slide__element--date" id="slide-2-date">N/A</div>
+				<div class="slide__element slide__element--temp" id="slide-2-temp">N/A</div>
+			</div>
+			<div class="slide" id="slide-3" data-weather="clear">
+				<div class="slide__element slide__element--date" id="slide-3-date">N/A</div>
+				<div class="slide__element slide__element--temp" id="slide-3-temp">N/A</div>
+			</div>
+			<div class="slide" id="slide-4" data-weather="clear">
+				<div class="slide__element slide__element--date" id="slide-4-date">N/A</div>
+				<div class="slide__element slide__element--temp" id="slide-4-temp">N/A</div>
+			</div>
+			<div class="slide" id="slide-5" data-weather="clear">
+				<div class="slide__element slide__element--date" id="slide-5-date">N/A</div>
+				<div class="slide__element slide__element--temp" id="slide-5-temp">N/A</div>
+			</div>
+			<nav class="slideshow__nav">
+				<a class="nav-item" href="#slide-1"><i class="icon" data-icon=")"></i><span id="slide-1-min-date">N/A</span></a>
+				<a class="nav-item" href="#slide-2"><i class="icon" data-icon=")"></i><span id="slide-2-min-date">N/A</span></a>
+				<a class="nav-item" href="#slide-3"><i class="icon" data-icon=")"></i><span id="slide-3-min-date">N/A</span></a>
+				<a class="nav-item" href="#slide-4"><i class="icon" data-icon=")"></i><span id="slide-4-min-date">N/A</span></a>
+				<a class="nav-item" href="#slide-5"><i class="icon" data-icon=")"></i><span id="slide-5-min-date">N/A</span></a>
+			</nav>
+		</div>
+		<p class="nosupport">Sorry, but your browser does not support WebGL!</p>
+	</div>
+	<!-- /container -->
+	<script src="js/index.min.js"></script>
+</body>
+</html>
