@@ -21,12 +21,3 @@ Project configured!
   <li>Go to <i>index.html</i> folder and run <code>live-server</code></li>
 </ol>
 Project running!
-
-<h3>
-There is an example with a project already configured inside <i>demo_application/</i> folder
-</h3>
-
-<h2>Screenshots:</h2>
-<div align="center">
-    <img src="/images/screenshot.jpg" width="400px"</img> 
-</div>
