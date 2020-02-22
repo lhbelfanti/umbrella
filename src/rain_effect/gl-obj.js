@@ -1,47 +1,54 @@
-import * as WebGL from "./webgl";
+import WebGL from "./webgl";
 
-function GL(canvas, options, vert, frag) {
-  this.init(canvas, options, vert, frag);
+export default class GL {
+	constructor(canvas, options, vert, frag) {
+		this.canvas = null;
+		this.gl = null;
+		this.program = null;
+		this.width = 0;
+		this.height = 0;
+		this.init(canvas, options, vert, frag)
+	}
+
+	init(canvas, options, vert, frag) {
+		this.canvas = canvas;
+		this.width = canvas.width;
+		this.height = canvas.height;
+		this.webgl = new WebGL();
+		this.gl = this.webgl.getContext(canvas, options);
+		this.program = this.createProgram(vert, frag);
+		this.useProgram(this.program);
+	}
+
+	createProgram(vert, frag) {
+		return this.webgl.createProgram(this.gl, vert, frag);
+	}
+
+	useProgram(program) {
+		this.program = program;
+		this.gl.useProgram(program);
+	}
+
+	createTexture(source, i) {
+		return this.webgl.createTexture(this.gl, source, i);
+	}
+
+	createUniform(type, name, ...v) {
+		this.webgl.createUniform(this.gl, this.program, type, name, ...v);
+	}
+
+	activeTexture(i) {
+		this.webgl.activeTexture(this.gl, i);
+	}
+
+	updateTexture(source) {
+		this.webgl.updateTexture(this.gl, source);
+	}
+
+	draw() {
+		this.webgl.setRectangle(this.gl, -1, -1, 2, 2);
+		this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+	}
 }
 
-GL.prototype = {
-  canvas: null,
-  gl: null,
-  program: null,
-  width: 0,
-  height: 0,
-  init(canvas, options, vert, frag) {
-    this.canvas = canvas;
-    this.width = canvas.width;
-    this.height = canvas.height;
-    this.gl = WebGL.getContext(canvas, options);
-    this.program = this.createProgram(vert, frag);
-    this.useProgram(this.program);
-  },
-  createProgram(vert, frag) {
-    let program = WebGL.createProgram(this.gl, vert, frag);
-    return program;
-  },
-  useProgram(program) {
-    this.program = program;
-    this.gl.useProgram(program);
-  },
-  createTexture(source, i) {
-    return WebGL.createTexture(this.gl, source, i);
-  },
-  createUniform(type, name, ...v) {
-    WebGL.createUniform(this.gl, this.program, type, name, ...v);
-  },
-  activeTexture(i) {
-    WebGL.activeTexture(this.gl, i);
-  },
-  updateTexture(source) {
-    WebGL.updateTexture(this.gl, source);
-  },
-  draw() {
-    WebGL.setRectangle(this.gl, -1, -1, 2, 2);
-    this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
-  }
-}
 
-export default GL;
