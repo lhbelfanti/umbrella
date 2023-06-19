@@ -5,8 +5,8 @@
 <p align="center">Weather forecast wallpaper<p>
 <p align="center"><a href="https://lhbelfanti.gitlab.io/umbrella/"><strong>➥ Live Demo</strong></a></p>
 <p align="center">
-    <img src="https://img.shields.io/github/repo-size/lhbelfanti/advent?label=Repo%20size" alt="Repo size" />
-    <img src="https://img.shields.io/github/license/lhbelfanti/advent?label=License" alt="License" />
+    <img src="https://img.shields.io/github/repo-size/lhbelfanti/umbrella?label=Repo%20size" alt="Repo size" />
+    <img src="https://img.shields.io/github/license/lhbelfanti/umbrella?label=License" alt="License" />
 </p>
 
 ---
