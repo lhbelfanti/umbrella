@@ -30,6 +30,7 @@ Web project based on [RainEffect project](https://github.com/codrops/RainEffect)
 3. Go to project root folder and run:
     1. `npm install` - to install dependencies
     2. `gulp build` - to build the project.
+4. Add the Open Weather App ID inside [weather-api.json](./src/js/configs/weather-api.json)
 
 Project configured!
 
