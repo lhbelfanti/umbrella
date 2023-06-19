@@ -1,6 +1,6 @@
 {
   "appUrl": "https://api.openweathermap.org/data/2.5/",
-  "appId": "fe7d49304405d3ad0ccae68b822ca831",
+  "appId": "",
   "locations": {
     "San Francisco, United States": 5391959,
     "Buenos Aires, Argentina": 3435910,
