@@ -1,23 +1,46 @@
-# Weather Forecast Wallpaper
-Web project based on https://github.com/codrops/RainEffect.
+<p align="center">
+  <img src="media/umbrella-logo.png" width="100" alt="Repository logo" />
+</p>
+<h3 align="center">Umbrella</h3>
+<p align="center">Weather forecast wallpaper<p>
+<p align="center"><a href="https://lhbelfanti.gitlab.io/umbrella/"><strong>➥ Live Demo</strong></a></p>
+<p align="center">
+    <img src="https://img.shields.io/github/repo-size/lhbelfanti/advent?label=Repo%20size" alt="Repo size" />
+    <img src="https://img.shields.io/github/license/lhbelfanti/advent?label=License" alt="License" />
+</p>
 
-<h2>Steps to configure the project:</h2>
-<ol>
-  <li>Install npm: https://docs.npmjs.com/getting-started/installing-node</li>
-  <li>Install gulp: https://www.npmjs.com/package/gulp-install</li>
-  <li>Go to project folder and run:
-    <ul>
-      <li><code>npm install</code>, to install dependencies</li>
-      <li><code>gulp js</code>, to generate a single file with all the files of src folder. The file will be created inside <i>application/js/</i> folder, with the name <i>index.min.js</i></li>
-    </ul>
-  </li>
-  <li>Add the generated file (<i>index.min.js</i>) into your html file.</li>
-</ol>
+---
+
+# Weather forecast wallpaper
+
+Web project based on [RainEffect project](https://github.com/codrops/RainEffect).
+
+## Preview
+<img src="./media/umbrella.gif" width="500" alt="Umbrella project preview" />
+
+## Implemented functionalities
+- Real time forecast of the following 5 days.
+   - The max, min and average temperature of each day, with its icon.
+- Temperature units: Centigrade and Fahrenheit.
+- Different languages and locations.
+
+### Steps to configure the project
+1. Install [npm](https://docs.npmjs.com/getting-started/installing-node).
+2. Install [gulp](https://www.npmjs.com/package/gulp-install)
+3. Go to project root folder and run:
+    1. `npm install` - to install dependencies
+    2. `gulp build` - to build the project.
+
 Project configured!
 
-<h2>Steps to run the project:</h2>
-<ol>
-  <li>Run <code>npm install -g live-server</code>, <q>This is a little development server with live reload capability.</q> (https://github.com/tapio/live-server)</li>
-  <li>Go to <i>index.html</i> folder and run <code>live-server</code></li>
-</ol>
+### Steps to run the project
+1. Run `npm install -g live-server`. 
+   1. More about live-server package [here](https://github.com/tapio/live-server).
+2. Go inside the build (create by the `gulp build` command) folder and run `live-server`.
+
 Project running!
+
+---
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -1,0 +1,19 @@
+{
+  "styleSRC": "./src/css/*.css",
+  "styleURL": "./build/css/",
+  "jsSRC": "./src/js/",
+  "jsFront": "index.js",
+  "jsURL": "./build/js/",
+  "imgSRC": "./src/images/**/*",
+  "imgURL": "./build/images/",
+  "fontsSRC": "./src/fonts/**/*",
+  "fontsURL": "./build/fonts/",
+  "htmlSRC": "./src/**/*.html",
+  "htmlURL": "./build/",
+  "styleWatch": "./src/css/**/*.css",
+  "jsWatch": "./src/js/**/*.js",
+  "shadersWatch": "./src/js/shaders/*.*",
+  "imgWatch": "./src/images/**/*.*",
+  "fontsWatch": "./src/fonts/**/*.*",
+  "htmlWatch": "./src/**/*.html"
+}

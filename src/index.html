@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Weather Forecast</title>
+		<link href="images/favicon.ico" rel="icon"/>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/forecast.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons.css" />
+	</head>
+	<body class="forecast-body">
+		<div class="image-preload">
+			<img src="images/drop-color.png" alt="">
+			<img src="images/drop-alpha.png" alt="">
+			<img src="images/weather/texture-rain-fg.png" alt=""/>
+			<img src="images/weather/texture-rain-bg.png" alt=""/>
+			<img src="images/weather/texture-sun-fg.png" alt=""/>
+			<img src="images/weather/texture-sun-bg.png" alt=""/>
+			<img src="images/weather/texture-fallout-fg.png" alt=""/>
+			<img src="images/weather/texture-fallout-bg.png" alt=""/>
+			<img src="images/weather/texture-drizzle-fg.png" alt=""/>
+			<img src="images/weather/texture-drizzle-bg.png" alt=""/>
+			<img src="images/weather/texture-clouds-fg.png" alt=""/>
+			<img src="images/weather/texture-clouds-bg.png" alt=""/>
+		</div>
+		<div class="main-container">
+			<canvas width="1" height="1" id="container" class="canvas-container"></canvas>
+			<div class="options__buttons">
+				<button class="ui__button dropdown">
+					<span class="languages"></span>
+					<div class="dropdown-content" id="languages">
+					</div>
+				</button>
+				<button class="ui__button dropdown">
+					<span class="location"></span>
+					<div class="dropdown-content" id="locations">
+					</div>
+				</button>
+			</div>
+			<div class="days-container">
+				<div class="forecast-head">
+					<div class="main-day" id="main-day" data-weather="clear">
+						<div class="main-day--date" id="main-day--date">N/A</div>
+						<div class="main-temp-container">
+							<div class="main-day--temp" id="main-day--temp">N/A</div>
+							<button class="ui__button ui_button--selected" id="celsius">
+								<span class="main-day--metric-system">°C</span>
+							</button>
+							<span class="main-day--metric-system metric-system--separator__button">|</span>
+							<button class="ui__button" id="fahrenheit">
+								<span class="main-day--metric-system">°F</span>
+							</button>
+						</div>
+					</div>
+					<button class="ui__button" id="refresh">
+						<span class="refresh"></span>
+					</button>
+				</div>
+				<div class="forecast-body">
+					<button class="forecast-day__button forecast-day--current" id="forecast-day-1">
+						<span id="forecast-day-1--min-date">N/A</span>
+						<i class="icon" data-icon=")"></i>
+						<div class="forecast-temp-data">
+							<span class="forecast-day--max-temp" id="forecast-day-1--max-temp">N/A</span>
+							<span class="forecast-day--min-temp" id="forecast-day-1--min-temp">N/A</span>
+						</div>
+					</button>
+					<button class="forecast-day__button" id="forecast-day-2">
+						<span id="forecast-day-2--min-date">N/A</span>
+						<i class="icon" data-icon=")"></i>
+						<div class="forecast-temp-data">
+							<span class="forecast-day--max-temp" id="forecast-day-2--max-temp">N/A</span>
+							<span class="forecast-day--min-temp" id="forecast-day-2--min-temp">N/A</span>
+						</div>
+					</button>
+					<button class="forecast-day__button" id="forecast-day-3">
+						<span id="forecast-day-3--min-date">N/A</span>
+						<i class="icon" data-icon=")"></i>
+						<div class="forecast-temp-data">
+							<span class="forecast-day--max-temp" id="forecast-day-3--max-temp">N/A</span>
+							<span class="forecast-day--min-temp" id="forecast-day-3--min-temp">N/A</span>
+						</div>
+					</button>
+					<button class="forecast-day__button" id="forecast-day-4">
+						<span id="forecast-day-4--min-date">N/A</span>
+						<i class="icon" data-icon=")"></i>
+						<div class="forecast-temp-data">
+							<span class="forecast-day--max-temp" id="forecast-day-4--max-temp">N/A</span>
+							<span class="forecast-day--min-temp" id="forecast-day-4--min-temp">N/A</span>
+						</div>
+					</button>
+					<button class="forecast-day__button" id="forecast-day-5">
+						<span id="forecast-day-5--min-date">N/A</span>
+						<i class="icon" data-icon=")"></i>
+						<div class="forecast-temp-data">
+							<span class="forecast-day--max-temp" id="forecast-day-5--max-temp">N/A</span>
+							<span class="forecast-day--min-temp" id="forecast-day-5--min-temp">N/A</span>
+						</div>
+					</button>
+				</div>
+			</div>
+		</div>
+		<p class="no-support">Sorry, but your browser does not support WebGL!</p>
+		<!-- /container -->
+		<script src="js/index.min.js"></script>
+	</body>
+</html>

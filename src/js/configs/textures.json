@@ -1,0 +1,62 @@
+{
+  "textures": [
+    {
+      "name": "textureRainFg",
+      "src": "images/weather/texture-rain-fg.png"
+    },
+    {
+      "name": "textureRainBg",
+      "src": "images/weather/texture-rain-bg.png"
+    },
+    {
+      "name": "textureStormLightningFg",
+      "src": "images/weather/texture-storm-lightning-fg.png"
+    },
+    {
+      "name": "textureStormLightningBg",
+      "src": "images/weather/texture-storm-lightning-bg.png"
+    },
+    {
+      "name": "textureSunFg",
+      "src": "images/weather/texture-sun-fg.png"
+    },
+    {
+      "name": "textureSunBg",
+      "src": "images/weather/texture-sun-bg.png"
+    },
+    {
+      "name": "textureDrizzleFg",
+      "src": "images/weather/texture-drizzle-fg.png"
+    },
+    {
+      "name": "textureDrizzleBg",
+      "src": "images/weather/texture-drizzle-bg.png"
+    },
+    {
+      "name": "textureCloudsFg",
+      "src": "images/weather/texture-clouds-fg.png"
+    },
+    {
+      "name": "textureCloudsBg",
+      "src": "images/weather/texture-clouds-bg.png"
+    },
+    {
+      "name": "dropAlpha",
+      "src": "images/drop-alpha.png"
+    },
+    {
+      "name": "dropColor",
+      "src": "images/drop-color.png"
+    }
+  ],
+  "sizes": {
+    "textureBgSize": {
+      "width": 384,
+      "height": 256
+    },
+    "textureFgSize": {
+      "width": 96,
+      "height": 64
+    }
+  }
+}

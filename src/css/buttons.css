@@ -1,0 +1,196 @@
+@font-face {
+  font-family: 'MeteoconsRegular';
+  src: url('../fonts/meteocons/meteocons-webfont.eot');
+  src: url('../fonts/meteocons/meteocons-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/meteocons/meteocons-webfont.ttf') format('truetype'),
+  url('../fonts/meteocons/meteocons-webfont.woff') format('woff'),
+  url('../fonts/meteocons/meteocons-webfont.svg#MeteoconsRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*Buttons*/
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.button {
+  position: relative;
+  /*background: #ccc;*/
+  width: 150px;
+  height: 35px;
+  margin-bottom: 5px;
+}
+
+.link_bg {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  background: #4286f4;
+  color: #4286f4;
+  z-index: 2;
+}
+
+.link_bg i {
+  position: relative;
+}
+
+.link_title {
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  color: #fff;
+}
+
+.link_title:hover .button-icon {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.button:hover .link_bg {
+  width: 100%;
+  background: #4286f4;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover a {
+  font-weight: bold;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.button-icon {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  color: #fff;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  float: left;
+  transition: all .5s ease-in-out;
+}
+
+.button-icon i {
+  top: 22px;
+  position: relative;
+}
+
+.button-a {
+  display: block;
+  position: absolute;
+  float: left;
+  font-family: arial, serif;
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+}
+
+.button-span {
+  margin-top: 25px;
+  display: block;
+}
+
+.ui__button:hover,
+.ui_button--selected {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 16px;
+}
+
+.ui__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8vh;
+  height: 8vh;
+  margin: 0;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #252445;
+  transition: color 0.3s;
+}
+
+.main-day--metric-system {
+  font-weight: 700;
+  font-size: 4vh;
+}
+
+.metric-system--separator__button {
+  margin: 2vh 1vh 2vh 1vh;
+}
+
+.options__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 0 !important;
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  min-width: 8vw;
+  top: 100%;
+  right: 40%;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px 0 16px 16px;
+  z-index: 1;
+  color: #252445;
+}
+
+.dropdown-content button {
+  margin: 0;
+  padding: 16px 5px 16px 5px;
+  min-width: 100px;
+  background: none;
+  border: none;
+  text-align: center;
+  font-size: 2vh;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.dropdown-content button:hover, .dropdown-button--selected {
+  font-size: 2vh;
+  font-weight: bold;
+}
+
+.dropdown-location-button {
+  min-width: 16vw !important;
+}

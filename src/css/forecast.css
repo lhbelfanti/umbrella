@@ -1,0 +1,72 @@
+.main-temp-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+}
+
+.main-day--temp {
+  font-size: 17vh;
+  font-weight: 700;
+}
+
+.main-temp-container small {
+  font-size: 5vh;
+}
+
+.main-day--date {
+  font-size: 3vh;
+  font-weight: 700;
+  margin: 0 0 1em;
+}
+
+.forecast-day__button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #252445;
+  transition: color 0.3s;
+  width: 12vh;
+}
+
+.forecast-day__button:hover,
+.forecast-day__button:focus,
+.forecast-day--current {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 16px;
+}
+
+.forecast-day__button .icon {
+  font-size: 6vh;
+}
+
+.forecast-day__button span {
+  margin: 0.25em 0 0 0;
+  font-weight: 700;
+  font-size: 3.2vh;
+}
+
+.forecast-temp-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-day--max-temp {
+  padding: 0 5px 0 0;
+}
+
+.forecast-day--min-temp {
+  color: #545076
+}
+

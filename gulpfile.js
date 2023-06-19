@@ -1,43 +1,115 @@
-const gulp = require('gulp');
-const fs = require('fs');
-const connect = require('gulp-connect');
-const source = require('vinyl-source-stream');
-const browserify = require('browserify');
-const uglify = require('gulp-uglify');
-const streamify = require('gulp-streamify');
-const babelify = require("babelify");
+// Load Gulp
+const  { src, dest, task, watch, series, parallel } = require('gulp');
 
-gulp.task('js', function () {
-  compileJS('index');
-});
+// JS related plugins
+let babelify = require('babelify');
+let browserify = require('browserify');
+let buffer = require('vinyl-buffer');
+let source = require('vinyl-source-stream');
+let stripDebug = require( 'gulp-strip-debug');
+let uglify = require('gulp-uglify');
 
-for (var i = 0; i <= 3; i++) {
-  watch(i);
-}
+// Utility plugins
+let rename = require('gulp-rename')
+let sourcemaps = require('gulp-sourcemaps');
+let notify = require('gulp-notify');
+let plumber = require('gulp-plumber');
+let options = require('gulp-options');
+let gulpif = require('gulp-if');
+let connection = require('gulp-connect');
 
-gulp.task('connect', function () {
-  connect.server();
-});
+// Browsers related plugins
+let browserSync  = require('browser-sync').create();
 
-function compileJS(file) {
-  browserify('src/' + file + '.js', {debug: true})
-    .transform(babelify)
-    .transform('glslify')
-    .bundle()
-    .on("error", function (err) {
-      console.log("Error : " + err.message);
-    })
-    .pipe(source(file + '.min.js'))
-    .pipe(streamify(uglify()))
-    .pipe(gulp.dest('public/js'));
-}
+// Project related variables
+const constants = require('./project-config.json')
+let jsFiles = [constants.jsFront];
 
+// ------------------------------------------------------
 
-function watch(i) {
-  i = i > 0 ? i : '';
-  gulp.task('watch' + i, ['js' + i], function () {
-    gulp.watch(['src/*.js', 'src/shaders/*.frag', 'src/shaders/*.vert'], ['js' + i]);
+// Tasks Functions
+
+function browserSynchronization() {
+  browserSync.init({
+    server: {
+      baseDir: './build/'
+    }
   });
 }
 
+function reload(done) {
+  browserSync.reload();
+  done();
+}
 
+function js(done) {
+  jsFiles.map( function( entry ) {
+    return browserify({
+      entries: [constants.jsSRC + entry]
+    })
+      .transform( babelify, { presets: [ '@babel/preset-env' ] } )
+      .transform('glslify')
+      .bundle()
+      .pipe(source( entry ) )
+      .pipe(rename( {
+        extname: '.min.js'
+      }))
+      .pipe(buffer() )
+      .pipe(gulpif( options.has( 'production' ), stripDebug() ) )
+      .pipe(sourcemaps.init({ loadMaps: true }) )
+      .pipe(uglify())
+      .pipe(sourcemaps.write( '.' ))
+      .pipe(dest(constants.jsURL))
+      .pipe(browserSync.stream());
+  });
+  done();
+}
+
+function triggerPlumber(src_file, dest_file) {
+  return src(src_file)
+    .pipe(plumber())
+    .pipe(dest(dest_file));
+}
+
+function css() {
+  return triggerPlumber(constants.styleSRC, constants.styleURL);
+}
+
+function images() {
+  return triggerPlumber(constants.imgSRC, constants.imgURL);
+}
+
+function fonts() {
+  return triggerPlumber(constants.fontsSRC, constants.fontsURL);
+}
+
+function html() {
+  return triggerPlumber(constants.htmlSRC, constants.htmlURL);
+}
+
+function watchFiles() {
+  watch(constants.styleWatch, series(css, reload));
+  watch(constants.jsWatch, series(js, reload));
+  watch(constants.shadersWatch, series(js, reload));
+  watch(constants.imgWatch, series(images, reload));
+  watch(constants.fontsWatch, series(fonts, reload));
+  watch(constants.htmlWatch, series(html, reload));
+  src(constants.jsURL + 'main.min.js')
+    .pipe( notify({ message: 'Gulp is Watching, Happy Coding!' }) );
+}
+
+function connect() {
+  connection.server();
+}
+
+// Gulp Tasks
+
+task("css", css);
+task("js", js);
+task("images", images);
+task("fonts", fonts);
+task("html", html);
+task("build", parallel(css, js, images, fonts, html));
+
+task("connect", connect);
+task("watch", parallel(browserSynchronization, watchFiles));

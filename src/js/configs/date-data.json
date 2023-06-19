@@ -1,0 +1,83 @@
+{
+  "es": {
+    "days": [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
+    ],
+    "months": [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
+    ],
+    "dateFormat": "{0} {1} de {2} de {3}",
+    "minifiedDateFormat": "{0}/{1}"
+  },
+  "en": {
+    "days": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "dateFormat": "{0}, {2} {1}, {3}",
+    "minifiedDateFormat": "{1}/{0}"
+  },
+  "de": {
+    "days": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mitwoche",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "months": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "dateFormat": "{0}, {1}. {2} {3}",
+    "minifiedDateFormat": "{0}.{1}"
+  }
+}
